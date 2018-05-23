@@ -1,0 +1,158 @@
+
+<div class="users-table card">
+  <h3>Dodaj nowego użytkownika:</h3>
+  <div class="card">
+    <form class="user-form" (ngSubmit)="addUser()" validate>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="imie">Imię</label>
+            <input type="text" class="form-control" id="imie" name="imie" [(ngModel)]="model.Imie" #Imie="ngModel" placeholder="Imię" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="nazwisko">Nazwisko</label>
+            <input type="text" class="form-control" id="nazwisko" name="nazwisko" [(ngModel)]="model.Nazwisko" #Nazwisko="ngModel" placeholder="Nazwisko" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" placeholder="E-mail" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="haslo">Hasło</label>
+            <input type="password" class="form-control" id="haslo" name="haslo" [(ngModel)]="model.haslo" #haslo="ngModel" placeholder="Hasło" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <select class="custom-select" name="Stanowisko" [(ngModel)]="model.Stanowisko" required>
+              <option disabled hidden [ngValue]="model.Stanowisko">Wybierz stanowisko</option>
+              <option [ngValue]="'Operator CNC'">Operator CNC</option>
+              <option [ngValue]="'Stolarz'">Stolarz</option>
+              <option [ngValue]="'Lakiernik'">Lakiernik</option>
+              <option [ngValue]="'Montaż/Pakownia'">Montaż/Pakownia</option>
+              <option [ngValue]="'Zaopatrzeniowiec'">Zaopatrzeniowiec</option>
+              <option [ngValue]="'Kierownik'">Kierownik</option>
+              <option [ngValue]="'Administracja'">Administracja</option>
+              <option [ngValue]="'Obsługa'">Obsługa</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="newUserAlert" class="alert alert-success">{{newUserAlert}}</div>
+      <button type="submit" class="btn btn-primary btn-outline-success" >Zapisz</button>
+    </form>
+  </div>
+  <br>
+
+  <h3 id="users-header">Użytkownicy:</h3>
+  <div *ngIf="deleteAlert" class="alert alert-success">{{deleteAlert}}</div>
+  <table class="table table-striped flex-lg-column d-none d-lg-block">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Id pracownika</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Stanowisko</th>
+      <th>E-mail</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{user.id_pracownika}}</td>
+      <td>{{user.Imie}}</td>
+      <td>{{user.Nazwisko}}</td>
+      <td>{{user.Stanowisko}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <button type="button" (click)="editUser(user)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal" aria-label="Profile">
+          <i class="material-icons">build</i>
+        </button></td><td>
+      <button type="button" (click)="deleteUser(user.id_pracownika)" class="btn btn-raised btn-sm float-lg-right" aria-label="Profile">
+        <i class="material-icons">delete</i>
+      </button>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+    <div class="card user-card d-block d-lg-none" *ngFor="let user of users">
+    <p><b>Id.</b>{{user.id_pracownika}}. {{user.imie}} {{user.nazwisko}} <b>e-mail:</b> {{user.email}}</p>
+    <span><button type="button" (click)="editUser(user)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
+      <i class="material-icons">build</i>
+    </button>
+    <button type="button" (click)="deleteUser(user.id_pracownik)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">
+      <i class="material-icons">delete</i>
+    </button></span>
+    </div>
+</div>
+
+<!--MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dokonaj zmian w bazie użytkownik</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="addUser()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="name">Imię</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.Imie" #name="ngModel" placeholder="Imię" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="surname">Nazwisko</label>
+                <input type="text" class="form-control" id="surname" name="surname" [(ngModel)]="model.Nazwisko" #surname="ngModel" placeholder="Nazwisko" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="emaill">E-mail</label>
+                <input type="email" class="form-control" id="emaill" name="emaill" [(ngModel)]="model.email" #emaill="ngModel" placeholder="E-mail" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="password">Hasło</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="model.haslo" #password="ngModel" placeholder="Hasło" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <select class="custom-select" name="Stanowisko" [(ngModel)]="model.Stanowisko" required>
+                  <option disabled hidden [ngValue]="model.Stanowisko">Wybierz stanowisko</option>
+                  <option [ngValue]="'Operator CNC'">Operator CNC</option>
+                  <option [ngValue]="'Stolarz'">Stolarz</option>
+                  <option [ngValue]="'Lakiernik'">Lakiernik</option>
+                  <option [ngValue]="'Montaż/Pakownia'">Montaż/Pakownia</option>
+                  <option [ngValue]="'Zaopatrzeniowiec'">Zaopatrzeniowiec</option>
+                  <option [ngValue]="'Kierownik'">Kierownik</option>
+                  <option [ngValue]="'Administracja'">Administracja</option>
+                  <option [ngValue]="'Obsługa'">Obsługa</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="newUserAlert" class="alert alert-success">{{newUserAlert}}</div>
+          <button type="submit"  (click)="onClick()" class="btn btn-primary">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

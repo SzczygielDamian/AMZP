@@ -1,0 +1,45 @@
+<img class="card-img-top" src="http://www.beta.tu.kielce.pl/psk_baza/pics/top.jpg">
+<h3 class="center">Wydział Zarządzania i Modelowania Komputerowego</h3>
+<h5 class="center">Zarządzanie i Inżynieria Produkcji</h5>
+<h5 class="center">Specjalność: Inżynieria zarządzania</h5>
+<h5 class="center">Studia stacjonarne II stopnia</h5>
+<h5 class="center">Praca dyplomowa (magisterska)</h5>
+<h5 class="center size">Temat: Aplikacja internetowa do monitorowania zleceń produkcyjnych</h5>
+<h5 class="right">Autor: Damian Szczygieł</h5>
+<h5 class="right">Promotor: Dr inż. Zbigniew Sender</h5>
+<button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary img-center but">Przejdź do logowania</button>
+<h6 class="center">Kielce 2018</h6>
+
+
+<!--MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div id="login-form" class="card">
+          <form name="loginForm" (ngSubmit)=" login()" validate>
+            <h3>Logowanie</h3>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" [(ngModel)]="model.email" #email="ngModel" placeholder="Podaj e-mail" required>
+            </div>
+            <div class="form-group">
+              <label for="haslo">Hasło</label>
+              <input type="password" class="form-control" id="haslo" name="haslo" [(ngModel)]="model.haslo" #haslo="ngModel" placeholder="Podaj hasło" required>
+            </div>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            <button type="submit" class="btn btn-primary log">Zaloguj</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

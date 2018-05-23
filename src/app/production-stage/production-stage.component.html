@@ -1,0 +1,57 @@
+<div class="users-table card">
+  <h3>Etapy produkcji stołu</h3>
+  <!--&lt;!&ndash;<h3>Przypisz etap produkcji do stanowiska:</h3>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="card">&ndash;&gt;-->
+    <!--&lt;!&ndash;<form class="user-form" (ngSubmit)="addProductionStage()" validate>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-md-6 col-sm-12">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>Wybierz stanowisko:</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<select class="custom-select" name="stanowisko" [(ngModel)]="model.stanowisko" required>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option *ngFor="let machine of machines" [ngValue]="machine.id_stanowiska">{{machine.id_stanowiska}}. {{machine.nazwa_maszyny}}</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-md-6 col-sm-12">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+            <!--&lt;!&ndash;<select class="custom-select" name="nazwa_etapu" [(ngModel)]="model.nazwa_etapu" required>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option disabled hidden [ngValue]="model.nazwa_etapu">Wybierz etap produkcji</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'Cięcie'">Cięcie</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'Heblowanie'">Heblowanie</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'Frezowanie'">Frezowanie</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'lakierowanie/malowanie'">lakierowanie/malowanie</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'Oklejanie'">Oklejanie</option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option [ngValue]="'Montaż/Pakowanie'">Montaż/Pakownia</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div *ngIf="newStageAlert" class="alert alert-success">{{newStageAlert}}</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<button type="submit" class="btn btn-primary btn-outline-success">Zapisz</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</form>&ndash;&gt;-->
+  <!--</div>-->
+  <table class="table table-striped flex-lg-column d-none d-lg-block">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Nazwa stanowiska</th>
+      <th>Nazwa etapu</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let Stege of productionStage; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{Stege.nazwa_maszyny}}</td>
+      <td>{{Stege.nazwa_etapu}}</td>
+      <td></td>
+      <td>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="card user-card d-block d-lg-none" *ngFor="let Stage of productionStage">
+    <p><b>Id.</b>{{Stage.id_etapu_produkcji}}<b>Stanowisko:</b> {{Stage.nazwa_maszyny}}<b>Etap:</b> {{Stage.nazwa_etapu}}</p>
+  </div>
+</div>

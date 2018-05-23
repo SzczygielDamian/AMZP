@@ -1,0 +1,113 @@
+<div class="users-table card">
+  <h3>Przydziel pracownika do stanowiska:</h3>
+  <div class="card">
+    <form class="user-form" (ngSubmit)="addUserWorkplace()" validate>
+     <div class="row">
+      <div class="col-md-6 col-sm-12">
+         <div class="form-group">
+
+           <select class="custom-select" name="pracownik" [(ngModel)]="model.pracownik" required >
+            <option *ngFor="let user of users" [ngValue]="user.id_pracownika">{{user.Imie + ' ' + user.Nazwisko + ' -  ' + user.Stanowisko}}</option>
+            </select>
+         </div>
+     </div>
+    <div class="col-md-6 col-sm-12">
+      <div class="form-group">
+        <select class="custom-select" name="nazwa_maszyny" [(ngModel)]="model.nazwa_maszyny" required>
+          <option disabled hidden [ngValue]="model.nazwa_maszyny">Wybierz nazwe maszyny</option>
+          <option [ngValue]="'Piła panelowa'">Piła panelowa</option>
+          <option [ngValue]="'CNC'">CNC</option>
+          <option [ngValue]="'Okleiniarka'">Okleiniarka</option>
+          <option [ngValue]="'Heblarka'">Heblarka</option>
+          <option [ngValue]="'Foliowanie/lakierowanie'">Foliowanie/lakierowanie</option>
+          <option [ngValue]="'Montaż/Pakownia'">Montaż/Pakownia</option>
+        </select>
+       </div>
+      </div>
+    </div>
+      <div *ngIf="newUserAlert" class="alert alert-success">{{newUserWorkplace}}</div>
+      <button type="submit" class="btn btn-primary btn-outline-success">Zapisz</button>
+    </form>
+  </div>
+  <table class="table table-striped flex-lg-column d-none d-lg-block">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>nazwa maszyny</th>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let machine of machines; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{machine.nazwa_maszyny}}</td>
+      <td>{{machine.Imie}}</td>
+      <td>{{machine.Nazwisko}}</td>
+      <td>
+        <button type="button" (click)="editUserWorkplace(machine)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal" aria-label="Profile">
+          <i class="material-icons">build</i>
+        </button></td><td>
+      <button type="button" (click)="deleteUserWorkplace(machine.id_stanowiska)" class="btn btn-raised btn-sm float-lg-right" aria-label="Profile">
+        <i class="material-icons">delete</i>
+      </button>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="card user-card d-block d-lg-none" *ngFor="let machine of machines">
+    <p><b>Id.</b>{{machine.id_stanowiska}}. {{machine.nazwa_maszyny}}. {{machine.Imie}} {{machine.Nazwisko}}</p>
+    <span><button type="button" (click)="editUserWorkplace(machine)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
+      <i class="material-icons">build</i>
+    </button>
+    <button type="button" (click)="deleteUserWorkplace(machine.id_stanowiska)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">
+      <i class="material-icons">delete</i>
+    </button></span>
+  </div>
+</div>
+
+<!--MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dokonaj zmian stanowisk pracy</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="addUserWorkplace()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+
+                <select class="custom-select" name="pracownik" [(ngModel)]="model.pracownik" required >
+                  <option *ngFor="let user of users" [ngValue]="user.id_pracownika">{{user.id_pracownika + ' ' + user.Imie + ' ' + user.Nazwisko}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <select class="custom-select" name="nazwa_maszyny" [(ngModel)]="model.nazwa_maszyny" required>
+                  <option disabled hidden [ngValue]="model.nazwa_maszyny">Wybierz nazwe maszyny</option>
+                  <option [ngValue]="'Piła panelowa'">Piła panelowa</option>
+                  <option [ngValue]="'CNC'">CNC</option>
+                  <option [ngValue]="'Okleiniarka'">Okleiniarka</option>
+                  <option [ngValue]="'Heblarka'">Heblarka</option>
+                  <option [ngValue]="'Foliowanie/lakierowanie'">Foliowanie/lakierowanie</option>
+                  <option [ngValue]="'Montaż/Pakownia'">Montaż/Pakownia</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="newUserAlert" class="alert alert-success">{{newUserWorkplace}}</div>
+          <button type="submit" (click)="onClick()" class="btn btn-primary btn-outline-success">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.btn{
+  color: #000000;
+  font-weight: bold;
+  border-color: #000000;
+}
+h3{
+  padding-top: 10px;
+}
+*{
+  padding-left: 5px;
+}
+.thead-inverse th{
+  background-color: #2196F3;
+  color: #ffffff;
+}
+.table{
+  padding-top: 10px;
+}
+
+

@@ -1,0 +1,66 @@
+<div class="users-table card">
+  <h3>Dodaj nową pozycję zużcia półproduktu na produkt:</h3>
+  <div class="card">
+    <form class="user-form" (ngSubmit)="addNewProductConsumption()" validate>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <p>model stołu</p>
+            <select class="custom-select" name="produkt" [(ngModel)]="model.produkt" required >
+              <option *ngFor="let prod of product" [ngValue]="prod.id_produktu">{{prod.nazwa_produktu}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <p>nazwa półproduktu </p>
+            <select class="custom-select" name="polprodukty" [(ngModel)]="model.polprodukty" required >
+               <option *ngFor="let halfProduct of halfProducts" [ngValue]="halfProduct.id_polproduktu">{{halfProduct.nazwa_polproduktu}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="Zuzycie">Zużycie</label>
+            <input type="number" class="form-control" id="Zuzycie" min="1" name="Zuzycie" [(ngModel)]="model.Zuzycie" #Zuzycie="ngModel" placeholder="Ilość materiału" required>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="newProductConsumptionAlert" class="alert alert-success">{{newProductConsumptionAlert}}</div>
+      <button type="submit" class="btn btn-primary btn-outline-success">Zapisz</button>
+    </form>
+  </div>
+
+  <div *ngIf="deleteAlert" class="alert alert-success">{{deleteAlert}}</div>
+  <table class="table table-striped flex-lg-column d-none d-lg-block">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Produkt</th>
+      <th>Półprodukt</th>
+      <th>Zużycie</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cOi of consumptionOfIntermediates; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{cOi.nazwa_produktu}}</td>
+      <td>{{cOi.nazwa_polproduktu}}</td>
+      <td>{{cOi.Zuzycie}}</td>
+      <td>
+      <button type="button" (click)="deleteCOfI(cOi)" class="btn btn-raised btn-sm float-lg-right" aria-label="Profile">
+        <i class="material-icons">delete</i>
+      </button>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="card user-card d-block d-lg-none" *ngFor="let cOi of consumptionOfIntermediates">
+    <p><b>Nazwa Produktu:</b> {{cOi.nazwa_produktu}} <b>Nazwa Półproduktu:</b> {{cOi.nazwa_polproduktu}} <b>Zużycie:</b> {{cOi.Zuzycie}}</p>
+    <span><button type="button" (click)="deleteCOfI(cOi)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">
+      <i class="material-icons">delete</i>
+    </button></span>
+  </div>
+</div>

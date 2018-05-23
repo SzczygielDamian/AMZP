@@ -1,0 +1,5 @@
+<app-menu *ngIf="canLook && currentUrl !== '/home'"></app-menu>
+<app-information *ngIf="canLook && currentUrl !== '/home'"></app-information>
+<router-outlet *ngIf="canLook"></router-outlet>
+<router-outlet *ngIf="!canLook"></router-outlet>
+

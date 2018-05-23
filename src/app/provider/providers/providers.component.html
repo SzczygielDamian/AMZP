@@ -1,0 +1,149 @@
+<div class="users-table card">
+  <button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn-raised btn-primary">Dodaj nowy półprodukt</button>
+<h3 id="users-header">Półprodukty</h3>
+<div class="users-table card">
+<table class="table table-striped flex-lg-column d-none d-lg-block">
+  <thead class="thead-inverse">
+  <tr>
+    <th>#</th>
+    <th>Nazwa Półproduktu</th>
+    <th>Ilość Półproduktu</th>
+    <th>Typ Półproduktu</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let halfProduct of halfProducts; let i = index">
+    <th scope="row" [ngStyle]="{'background-color': halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000 ? 'red' : ''}">{{i+1}}</th>
+    <td [ngStyle]="{'background-color': halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000 ? 'red' : ''}">{{halfProduct.nazwa_polproduktu}}</td>
+    <td [ngStyle]="{'background-color': halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000 ? 'red' : ''}">{{halfProduct.ilosc_polproduktu}}</td>
+    <td [ngStyle]="{'background-color': halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000 ? 'red' : ''}">{{halfProduct.typ_polproduktu}}</td>
+    <td *ngIf="halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000"> Dokonaj zamówienia towaru
+  </td>
+    <td *ngIf="halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000">
+      <button type="button" (click)="EditHalfProducts(halfProduct)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal2" aria-label="Profile">
+        <i class="material-icons">build</i>
+      </button></td>
+    <td>
+    </td>
+  </tr>
+  </tbody>
+</table>
+  <div class="card user-card d-block d-lg-none" *ngFor="let halfProduct of halfProducts" [ngStyle]="{'background-color': halfProduct.typ_polproduktu === 'Drewno' && halfProduct.ilosc_polproduktu <= 15 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Lakier' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Bejca' && halfProduct.ilosc_polproduktu <= 5 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Wkręt' && halfProduct.ilosc_polproduktu <= 200 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Kołek' && halfProduct.ilosc_polproduktu <= 150 ? 'red' : '' ||
+     halfProduct.typ_polproduktu === 'Debel' && halfProduct.ilosc_polproduktu <= 1000 ? 'red' : ''}">
+    <p><b>Półprodukt:</b> {{halfProduct.nazwa_polproduktu}} <b>Ilość:</b> {{halfProduct.ilosc_polproduktu}} <b>Typ:</b> {{halfProduct.typ_polproduktu}} </p>
+    <span><button type="button" (click)="EditHalfProducts(halfProduct)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal2" aria-label="Profile">
+        <i class="material-icons">build</i>
+      </button>
+    </span>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dokonaj nowy półprodukt</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="AddnewHalfProducts()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="nazwa_polproduktu">Nazwa półproduktu</label>
+                <input type="text" class="form-control" id="nazwa_polproduktu" name="nazwa_polproduktu" [(ngModel)]="model.nazwa_polproduktu" #nazwa_polproduktu="ngModel" placeholder="nazwa polproduktu" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <select class="custom-select" name="typ_polproduktu" [(ngModel)]="model.typ_polproduktu" required>
+                  <option disabled hidden [ngValue]="model.typ_polproduktu">Wybierz typ połproduktu</option>
+                  <option [ngValue]="'Drewno'">Drewno</option>
+                  <option [ngValue]="'Lakier'">Lakier</option>
+                  <option [ngValue]="'Bejca'">Bejca</option>
+                  <option [ngValue]="'Wkręt'">Wkręt</option>
+                  <option [ngValue]="'Kołek'">Kołek</option>
+                  <option [ngValue]="'Debel'">Debel</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="ilosc_polproduktu">ilosc półproduktu</label>
+                <input type="number" class="form-control" id="ilosc_polproduktu" name="ilosc_polproduktu" [(ngModel)]="model.ilosc_polproduktu" #ilosc_polproduktu="ngModel" placeholder="ilosc polproduktu" required>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="newHalfProductsAlert" class="alert alert-success">{{newHalfProductsAlert}}</div>
+          <button type="submit"  (click)="onClick()" class="btn btn-primary">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Dokonaj nowy półprodukt</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="UpdateHalfProduct()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="amount_of_intermediate">ilosc półproduktu</label>
+                <input type="number" class="form-control" id="amount_of_intermediate" name="amount_of_intermediate" [(ngModel)]="model.ilosc_polproduktu" #amount_of_intermediate="ngModel" placeholder="ilosc polproduktu" required>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="EditHalfProductsAlert" class="alert alert-success">{{EditHalfProductsAlert}}</div>
+          <button type="submit"  (click)="onClick()" class="btn btn-primary">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

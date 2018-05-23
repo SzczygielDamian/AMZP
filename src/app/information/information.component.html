@@ -1,0 +1,49 @@
+<div class="information-table card d-none d-xl-block">
+  <h6>Aplikacja Mobilna Monitorująca Zlecenia Produkcyjne</h6>
+  <div *ngIf="this.router.url === '/users'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Pracownik</h6>
+    <p><span>Dostęp:</span> Admin, Administracja</p>
+    <p><span>Opis:</span> Pracownik administracyjny ma możliwość dodawania pracowników do bazy danych, edytowania oraz usuwania.</p>
+  </div>
+  <div *ngIf="this.router.url === '/workplace'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Stanowisko</h6>
+    <p><span>Dostęp:</span> Admin, Administracja</p>
+    <p><span>Opis:</span> Pracownik administracyjny ma możliwość przydzielania pracowników do stanowisk pracy, edytowania ich oraz usuwania.</p>
+  </div>
+  <div *ngIf="this.router.url === '/production-stage'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Etap produkcji</h6>
+    <p><span>Dostęp:</span> Admin, Administracja</p>
+    <p><span>Opis:</span> Pracownik administracyjny przydziela etapy prdukcji.</p>
+  </div>
+  <div *ngIf="this.router.url === '/warehouse'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Magazyn</h6>
+    <p><span>Dostęp:</span> Admin, Lakiernik, Operator CNC, Stolarz, pracownik stanowiska montażu/pakowania</p>
+    <p><span>Opis:</span> Pracownik ma dostep do aktualnie znajdujacych sie w magazynie stołów, oznaczenia iż dany element został zabrany do dalszego etapu produkcji oraz dodania go ponownie do magazynu. </p>
+  </div>
+  <div *ngIf="this.router.url === '/providers'" class="info">
+    <h6>Strona na jakiej się znajdujesz: magazyn półproduktów</h6>
+    <p><span>Dostęp:</span> Admin, Zaopatrzeniowiec, Kierownik</p>
+    <p><span>Opis:</span> Pracownicy maja wgląd do stanu magazynu półproduktów. </p>
+  </div>
+  <div *ngIf="this.router.url === '/errand'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Zamówienia</h6>
+    <p><span>Dostęp:</span> Admin, Obsługa</p>
+    <p><span>Opis:</span> Pracownicy dodaja do bazy danych zamówienia, które są następnie wyświetlana pracownikom produkcyjnym.</p>
+  </div>
+  <div *ngIf="this.router.url === '/consumption-of-intermediates'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Zużycie półproduktów na produkt</h6>
+    <p><span>Dostęp:</span> Admin, Kierownik</p>
+    <p><span>Opis:</span> Pracownik dodaje do bazy danych zużycie odpowiednich połproduktów niezbędnych do wyprodukowania danego produktu.</p>
+  </div>
+  <div *ngIf="this.router.url === '/order-monitoring'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Status zamówienia</h6>
+    <p><span>Dostęp:</span> Admin, Administracja, Obsługa</p>
+    <p><span>Opis:</span> Pracownikom wyświetla się informcja w jakim etapie produkcyji znajduje się dane zamówienie.</p>
+  </div>
+  <div *ngIf="this.router.url === '/production-results'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Wyniki produkcji</h6>
+    <p><span>Dostęp:</span> Admin, Administracja, Obsługa</p>
+    <p><span>Opis:</span> Pracownikom wyświetlają się wyniki produkcji.</p>
+  </div>
+</div>
+

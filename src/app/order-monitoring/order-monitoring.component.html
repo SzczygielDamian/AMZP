@@ -1,0 +1,31 @@
+<table class="table table-striped flex-lg-column d-none d-lg-block">
+  <thead class="thead-inverse">
+  <tr>
+    <th>#</th>
+    <th>ID zamówienia</th>
+    <th>Nazwa zamówienia</th>
+    <th>Produkt</th>
+    <th>Etap produkcji</th>
+    <th>Status zamówienia</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let table of warehouse; let i = index">
+    <th scope="row">{{i+1}}</th>
+    <td>{{table.Zamowienie_id_zamowienie}}</td>
+    <td>{{table.nazwa_zamowienia}}</td>
+    <td>{{table.nazwa_produktu}}</td>
+    <td>{{table.etap_produkcji_id_etapu_produkcji}}/6</td>
+    <td *ngIf="table.stan_w_magazynie === 1 && table.etap_produkcji_id_etapu_produkcji !== 6 && table.etap_produkcji_id_etapu_produkcji !== 0"> Oczekwianie na realizacje dalszego etpau produkcji</td>
+    <td *ngIf="table.etap_produkcji_id_etapu_produkcji === 6"> Gotowy do odbioru</td>
+    <td *ngIf="table.stan_w_magazynie === 0">W realizacji</td>
+    <td *ngIf="table.etap_produkcji_id_etapu_produkcji === 0">W trakcie rejestracji zamówienia</td>
+    <td>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="card user-card d-block d-lg-none" *ngFor="let table of warehouse">
+  <p><b>Id.zamówienia </b>{{table.Zamowienie_id_zamowienie}}<b> Nazwa zamówienia:</b> {{table.nazwa_zamowienia}} <b>Produkt:</b> {{table.nazwa_produktu}}<b> Etap produkcji:</b> {{table.etap_produkcji_id_etapu_produkcji}}/6 <b>Status etapu: </b> <b *ngIf="table.stan_w_magazynie === 1 && table.etap_produkcji_id_etapu_produkcji !== 6 && table.etap_produkcji_id_etapu_produkcji !== 0"> Oczekwianie na realizacje dalszego etpau produkcji</b><b *ngIf="table.etap_produkcji_id_etapu_produkcji === 6"> Gotowy do odbioru</b><b *ngIf="table.stan_w_magazynie === 0"> W realizacji</b><b *ngIf="table.etap_produkcji_id_etapu_produkcji === 0"> W trakcie rejestracji zamówienia</b>  </p>
+</div>

@@ -1,0 +1,81 @@
+<div class="users-table card">
+  <h3>Dodaj nowe zamówienie:</h3>
+  <div class="card">
+    <form class="user-form" (ngSubmit)="addOrder()" validate>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <p>Wybierz model</p>
+            <select class="custom-select" name="produkt" [(ngModel)]="model.produkt" required >
+              <option *ngFor="let prod of product" [ngValue]="prod.id_produktu">{{prod.nazwa_produktu}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <select class="custom-select" name="nazwa_zamowienia" [(ngModel)]="model.nazwa_zamowienia" required >
+              <option disabled hidden [ngValue]="model.nazwa_zamowienia">Wybierz produkt</option>
+              <option [ngValue]="'Stół'">Stół</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="ilosc_zamowienia">Ilość zamówienia</label>
+            <input type="number" class="form-control" id="ilosc_zamowienia" min="1" max="1" name="ilosc_zamowienia" [(ngModel)]="model.ilosc_zamowienia" #ilosc_zamowienia="ngModel" placeholder="Ilość zamówienia" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="data_realizacji">Data realizacji</label>
+            <input type="date" class="form-control" [min]="today" id="data_realizacji" name="data_realizacji" [(ngModel)]="model.data_realizacji" #data_realizacji="ngModel" placeholder="Data realizacji" required>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="proces_technologiczny">proces technologiczny</label>
+            <textarea maxlength="255" rows="10" class="form-control" id="proces_technologiczny" name="proces_technologiczny" [(ngModel)]="model.proces_technologiczny" #proces_technologiczny="ngModel" placeholder="proces technologiczny dla pracownika" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="newOrderAlert" class="alert alert-success">{{newOrderAlert}}</div>
+      <button type="submit" class="btn btn-primary btn-outline-success">Zapisz</button>
+    </form>
+  </div>
+
+
+<h3 id="users-header">Zamówienia:</h3>
+<table class="table table-striped flex-lg-column d-none d-lg-block">
+  <thead class="thead-inverse">
+  <tr>
+    <th>#</th>
+    <th>numer zamówienia</th>
+    <th>Nazwa zamówienia</th>
+    <th>Model</th>
+    <th>Ilość sztuk</th>
+    <th>Data zamówienia</th>
+    <th>Data realizacji</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of viewOfOrder; let i = index">
+    <th scope="row">{{i+1}}</th>
+      <td>{{order.id_zamowienie}}</td>
+      <td>{{order.nazwa_zamowienia}}</td>
+      <td>{{order.nazwa_produktu}}</td>
+      <td>{{order.ilosc_zamowienia}}</td>
+      <td>{{order.data_zamowienia |date: 'dd-MM-yyyy' }}</td>
+      <td>{{order.data_realizacji |date: 'dd-MM-yyyy' }}</td>
+      <td></td>
+      <td></td>
+  </tr>
+  </tbody>
+</table>
+    <div class="card user-card d-block d-lg-none" *ngFor="let order of viewOfOrder">
+      <p><b>Id.</b> {{order.id_zamowienie}} <b>Nazwa zamówienia:</b> {{order.nazwa_zamowienia}} <b>Model:</b> {{order.nazwa_produktu}} <b>Data zamowienia:</b> {{order.data_zamowienia |date: 'dd-MM-yyyy' }} <b>Data realizacji:</b> {{order.data_realizacji |date: 'dd-MM-yyyy' }} <b>Opis:</b> {{order.opis_zamowienia}}</p>
+    </div>
+</div>
+
+
