@@ -6,7 +6,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class MainService {
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'http://81.26.6.25:3001/api';
   public token: string;
 
   constructor(private http: Http) {

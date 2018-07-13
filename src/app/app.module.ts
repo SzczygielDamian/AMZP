@@ -27,19 +27,19 @@ import { ProductionResultsComponent } from './production-results/production-resu
 import { ProductsComponent } from './products/products.component';
 
 
-// @Injectable()
-// export class CustomLocationStrategy extends HashLocationStrategy {
-//   prepareExternalUrl(internal: string): string {
-//         const url = 'http://81.26.6.25/student02/' + '#' + internal;
-//         return url;
-//       }
-// }
-// export class Site {
-//   location: string;
-//   constructor() {
-//         this.location = window.location.href
-//   }
-// }
+@Injectable()
+export class CustomLocationStrategy extends HashLocationStrategy {
+  prepareExternalUrl(internal: string): string {
+        const url = 'http://81.26.6.25/student02/' + '#' + internal;
+        return url;
+      }
+}
+export class Site {
+  location: string;
+  constructor() {
+        this.location = window.location.href
+  }
+}
 
 
 const appRoutes: Routes = [
@@ -89,9 +89,9 @@ const appRoutes: Routes = [
 
   ],
   providers: [MainService,
-              AuthGuard
-              // { provide: APP_BASE_HREF, useValue: '/student02/' },
-              // { provide: LocationStrategy, useClass: CustomLocationStrategy },
+              AuthGuard,
+              { provide: APP_BASE_HREF, useValue: '/student02/' },
+              { provide: LocationStrategy, useClass: CustomLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })

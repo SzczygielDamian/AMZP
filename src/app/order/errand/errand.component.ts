@@ -4,7 +4,7 @@ import {FileUploader} from 'ng2-file-upload/ng2-file-upload';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-const URL = 'http://localhost:3000/api/upload';
+const URL = 'http://81.26.6.25:3001/api/upload';
 
 @Component({
   selector: 'app-errand',
