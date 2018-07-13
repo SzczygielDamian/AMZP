@@ -29,3 +29,11 @@ textarea{
   resize: none;
   overflow: inherit;
 }
+.row{
+  display: block;
+}
+@media screen and (min-width: 769px)  {
+  #users{
+    display: none;
+  }
+}

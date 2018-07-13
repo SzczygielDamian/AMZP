@@ -6,8 +6,8 @@
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <p>model stołu</p>
-            <select class="custom-select" name="produkt" [(ngModel)]="model.produkt" required >
-              <option *ngFor="let prod of product" [ngValue]="prod.id_produktu">{{prod.nazwa_produktu}}</option>
+            <select class="custom-select" name="model_produktu" [(ngModel)]="model.model_produktu" required>
+              <option *ngFor="let prod of productsModel" [ngValue]="prod.id_modelu">{{prod.nazwa_produktu + ' ' + prod.nazwa_modelu}}</option>
             </select>
           </div>
         </div>
@@ -37,6 +37,7 @@
     <tr>
       <th>#</th>
       <th>Produkt</th>
+      <th>Model</th>
       <th>Półprodukt</th>
       <th>Zużycie</th>
       <th></th>
@@ -46,6 +47,7 @@
     <tr *ngFor="let cOi of consumptionOfIntermediates; let i = index">
       <th scope="row">{{i+1}}</th>
       <td>{{cOi.nazwa_produktu}}</td>
+      <td>{{cOi.nazwa_modelu}}</td>
       <td>{{cOi.nazwa_polproduktu}}</td>
       <td>{{cOi.Zuzycie}}</td>
       <td>
@@ -58,7 +60,7 @@
   </table>
 
   <div class="card user-card d-block d-lg-none" *ngFor="let cOi of consumptionOfIntermediates">
-    <p><b>Nazwa Produktu:</b> {{cOi.nazwa_produktu}} <b>Nazwa Półproduktu:</b> {{cOi.nazwa_polproduktu}} <b>Zużycie:</b> {{cOi.Zuzycie}}</p>
+    <p><b>Nazwa Produktu:</b> {{cOi.nazwa_produktu}} <b>Nazwa Modelu:</b> {{cOi.nazwa_modelu}} <b>Nazwa Półproduktu:</b> {{cOi.nazwa_polproduktu}} <b>Zużycie:</b> {{cOi.Zuzycie}}</p>
     <span><button type="button" (click)="deleteCOfI(cOi)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">
       <i class="material-icons">delete</i>
     </button></span>

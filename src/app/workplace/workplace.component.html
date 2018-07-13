@@ -42,14 +42,15 @@
     </thead>
     <tbody>
     <tr *ngFor="let machine of machines; let i = index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{machine.nazwa_maszyny}}</td>
-      <td>{{machine.Imie}}</td>
-      <td>{{machine.Nazwisko}}</td>
-      <td>
+      <th scope="row" *ngIf="machine.nazwa_maszyny !== 'Brak'">{{i+1}}</th>
+      <td *ngIf="machine.nazwa_maszyny !== 'Brak'">{{machine.nazwa_maszyny}}</td>
+      <td *ngIf="machine.nazwa_maszyny !== 'Brak'">{{machine.Imie}}</td>
+      <td *ngIf="machine.nazwa_maszyny !== 'Brak'">{{machine.Nazwisko}}</td>
+      <td *ngIf="machine.nazwa_maszyny !== 'Brak'">
         <button type="button" (click)="editUserWorkplace(machine)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal" aria-label="Profile">
           <i class="material-icons">build</i>
-        </button></td><td>
+        </button></td>
+      <td *ngIf="machine.nazwa_maszyny !== 'Brak'">
       <button type="button" (click)="deleteUserWorkplace(machine.id_stanowiska)" class="btn btn-raised btn-sm float-lg-right" aria-label="Profile">
         <i class="material-icons">delete</i>
       </button>
@@ -58,8 +59,8 @@
     </tbody>
   </table>
   <div class="card user-card d-block d-lg-none" *ngFor="let machine of machines">
-    <p><b>Id.</b>{{machine.id_stanowiska}}. {{machine.nazwa_maszyny}}. {{machine.Imie}} {{machine.Nazwisko}}</p>
-    <span><button type="button" (click)="editUserWorkplace(machine)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
+    <p *ngIf="machine.nazwa_maszyny !== 'Brak'"><b>Id.</b>{{machine.id_stanowiska}}. {{machine.nazwa_maszyny}}. {{machine.Imie}} {{machine.Nazwisko}}</p>
+    <span *ngIf="machine.nazwa_maszyny !== 'Brak'"><button type="button" (click)="editUserWorkplace(machine)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
       <i class="material-icons">build</i>
     </button>
     <button type="button" (click)="deleteUserWorkplace(machine.id_stanowiska)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">

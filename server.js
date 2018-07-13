@@ -14,11 +14,10 @@ REST.prototype.connectMysql = function() {
   var self = this;
   var pool      =    mysql.createPool({
     connectionLimit : 100,
-    host     : '81.26.6.25',
-    user     : 'student02',
-    password : 'p7Y8i6Hv',
-    database : 'student02_db01',
-    port: '7021',
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'aplikacja',
     debug    :  false
   });
   pool.getConnection(function(err,connection){
@@ -41,8 +40,8 @@ REST.prototype.configureExpress = function(connection) {
 };
 
 REST.prototype.startServer = function() {
-  app.listen(3001,function(){
-    console.log("Połączono. Port 3001");
+  app.listen(3000,function(){
+    console.log("Połączono. Port 3000");
   });
 };
 

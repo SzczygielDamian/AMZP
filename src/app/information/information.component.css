@@ -1,29 +1,44 @@
-.information-table {
-  margin-top: 5px;
-  margin-right: 0.5%;
-  width: 30%;
-  float: right;
-  padding: 5px;
-  max-height: 600px;
-  overflow: auto;
-}
+@media screen and (min-width: 1200px) {
+  .information-table {
+    margin-top: 5px;
+    margin-right: 0.5%;
+    width: 30%;
+    float: right;
+    padding: 5px;
+    max-height: 600px;
+    overflow: auto;
+  }
 
-.information-table td {
-  font-size: 12px;
+  .information-table td {
+    font-size: 12px;
+  }
+
+  h6 {
+    text-align: center;
+  }
+
+  .information-table .card {
+    padding: 1px;
+    margin-top: 1px;
+  }
+
+  .information-table .card p {
+    margin-bottom: 2px;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  .info {
+    margin-left: 3px;
+  }
+
+  .thead-inverse th {
+    background-color: #2196F3;
+    color: #ffffff;
+  }
 }
-h6{
-  text-align: center;
-}
-.information-table .card{
-  padding:1px;
-  margin-top:1px;
-}
-.information-table .card p {
-  margin-bottom: 2px;
-}
-span{
+.in{
   font-weight: bold;
-}
-.info{
-  margin-left: 3px;
 }

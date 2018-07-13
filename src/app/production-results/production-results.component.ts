@@ -14,13 +14,15 @@ export class ProductionResultsComponent implements OnInit {
   productionResults = [];
   theResultOfTheProductionOfTables = [];
   theResultOfTheProductionOfTablesData = [];
-  theResultOfTheProductionOfTablesInMayTables = [];
-  theResultOfTheProductionOfTablesInMayTablesData = [];
+  theResultOfTheProductionOfModelTables = [];
+  theResultOfTheProductionOfModelTablesData = [];
+  theResultOfTheProductionOfModelTable = [];
+  theResultOfTheProductionOfModelTableData = [];
 
   @ViewChild('content') content: ElementRef ;
 
   reportPDF: any = [];
-  reportPDFResult: any =[];
+  reportPDFResult: any = [];
 
 
   constructor(private mainService: MainService) {
@@ -31,7 +33,8 @@ export class ProductionResultsComponent implements OnInit {
   ngOnInit() {
     this.getproductionResults();
     google.charts.setOnLoadCallback(this.theResultOfTheProductionOfTablesChart.bind(this));
-    google.charts.setOnLoadCallback(this.theResultOfTheProductionOfTablesInMayChart.bind(this));
+    google.charts.setOnLoadCallback(this.theResultOfTheProductionOfModelTablesChart.bind(this));
+    google.charts.setOnLoadCallback(this.theResultOfTheProductionOfModelTableChart.bind(this));
   }
 
   getproductionResults() {
@@ -72,44 +75,12 @@ export class ProductionResultsComponent implements OnInit {
     }, 1000);
   }
 
-  theResultOfTheProductionOfTablesInMayChart() {
-    this.mainService.getTheResultOfTheProductionOfTablesInMay()
-      .then(response => this.theResultOfTheProductionOfTablesInMayTables = response.data)
-      .then(() => {
-        this.theResultOfTheProductionOfTablesInMayTables.forEach((item) => {
-          this.theResultOfTheProductionOfTablesInMayTablesData.push([item.nazwa_produktu, item.Ilosc_wyprodukowanych_modeli]);
-        });
-      })
-      .then(() => {
-        const data = google.visualization.arrayToDataTable([
-          ['modele', ''],
-          ...this.theResultOfTheProductionOfTablesInMayTablesData
-        ]);
-        chart.draw(data, options);
-      })
-      .catch(error => console.log(error));
-
-    const options = {
-      legend: { position: 'none' },
-      chart: { title: 'Wynik produkcji w Maju' },
-      bars: 'horizontal', // Required for Material Bar Charts.
-      axes: {
-        x: {
-          0: { side: 'top', label: 'Wyniki produkcji'} // Top x-axis.
-        }
-      },
-      height: 300,
-      bar: { groupWidth: '90%' }
-    };
-
-    const chart = new google.charts.Bar(document.getElementById('theResultOfTheProductionOfTablesInMayChart'));
-  }
   theResultOfTheProductionOfTablesChart() {
     this.mainService.getTheResultOfTheProductionOfTables()
       .then(response => this.theResultOfTheProductionOfTables = response.data)
       .then(() => {
         this.theResultOfTheProductionOfTables.forEach((item) => {
-          this.theResultOfTheProductionOfTablesData.push([item.nazwa_produktu, item.Ilosc_zamowien_modelu]);
+          this.theResultOfTheProductionOfTablesData.push([item.nazwa_produktu, item.Ilosc_zamowien_produktu]);
         });
       })
       .then(() => {
@@ -122,13 +93,61 @@ export class ProductionResultsComponent implements OnInit {
       .catch(error => console.log(error));
 
     const options = {
-      title: 'Najczęściej zamiawiane modele stołów',
+      title: 'Najczęściej zamiawiane produkty',
       height: 300,
     };
 
     const chart = new google.visualization.PieChart(document.getElementById('theResultOfTheProductionOfTablesChart'));
   }
 
+  theResultOfTheProductionOfModelTablesChart() {
+    this.mainService.getTheResultOfTheProductionOfModelTables()
+      .then(response => this.theResultOfTheProductionOfModelTables = response.data)
+      .then(() => {
+        this.theResultOfTheProductionOfModelTables.forEach((item) => {
+          this.theResultOfTheProductionOfModelTablesData.push([item.nazwa_modelu, item.Ilosc_zamowien_modelu]);
+        });
+      })
+      .then(() => {
+        const data = google.visualization.arrayToDataTable([
+          ['zamowienie', ''],
+          ...this.theResultOfTheProductionOfModelTablesData
+        ]);
+        chart.draw(data, options);
+      })
+      .catch(error => console.log(error));
 
+    const options = {
+      title: 'Najczęściej zamiawiane modele stołów',
+      height: 300,
+    };
+
+    const chart = new google.visualization.PieChart(document.getElementById('theResultOfTheProductionOfModelTablesChart'));
+  }
+
+  theResultOfTheProductionOfModelTableChart() {
+    this.mainService.getTheResultOfTheProductionOfModelTable()
+      .then(response => this.theResultOfTheProductionOfModelTable = response.data)
+      .then(() => {
+        this.theResultOfTheProductionOfModelTable.forEach((item) => {
+          this.theResultOfTheProductionOfModelTableData.push([item.nazwa_modelu, item.Ilosc_zamowien_modelu]);
+        });
+      })
+      .then(() => {
+        const data = google.visualization.arrayToDataTable([
+          ['zamowienie', ''],
+          ...this.theResultOfTheProductionOfModelTableData
+        ]);
+        chart.draw(data, options);
+      })
+      .catch(error => console.log(error));
+
+    const options = {
+      title: 'Najczęściej zamiawiane modele stolików',
+      height: 300,
+    };
+
+    const chart = new google.visualization.PieChart(document.getElementById('theResultOfTheProductionOfModelTableChart'));
+  }
 
 }

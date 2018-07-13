@@ -2,10 +2,11 @@
   <thead class="thead-inverse">
   <tr>
     <th>#</th>
-    <th>id produkcji_stołu</th>
+    <th>id produkcji</th>
     <th>id zamowienia</th>
     <th>etap produkcji</th>
     <th>data wprowadzenia</th>
+    <th>pracownik wykonujący poprzedni etap</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,76 +15,78 @@
   </thead>
   <tbody>
   <tr *ngFor="let table of warehouse; let i = index">
-    <th scope="row" *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <th scope="row" *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                            currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                            currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-                           currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-                           currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+                           currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+                           currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                            currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
                            currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">{{i+1}}</th>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
-               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6 ">{{table.produkcja_stolu_id_produkcji}}</td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6 ">{{table.id_produkcji}}</td>
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
-               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6 ">{{table.Zamowienie_id_zamowienie}}</td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6 ">{{table.zamowienie_id_zamowienie}}</td>
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">{{table.etap_produkcji_id_etapu_produkcji}}</td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">{{table.data_godzina_wprowadzenia | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
+               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5">{{table.Imie + ' ' + table.Nazwisko}}</td>
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">
     </td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
-               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
-               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka'">
       <button type="button" (click)="showTechnologicalProcess(table)" class="btn btn-raised btn-sm float-left"  data-toggle="modal" data-target="#myModal" aria-label="Profile" *ngIf="table.etap_produkcji_id_etapu_produkcji !== 6" title="proces technologiczny">
         <i class="material-icons">info</i>
       </button>
     </td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5 ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6">
-      <button type="button" (click)="UpdatewarehouseTaking(table)" class="btn btn-raised btn-sm float-left"  aria-label="Profile" *ngIf="table.stan_w_magazynie === 1 && table.etap_produkcji_id_etapu_produkcji !== 6" title="pobierz z magazynu do obróbki">
+      <button type="button" (click)="UpdatewarehouseTaking(table)" class="btn btn-raised btn-sm float-left"  aria-label="Profile" [disabled]="isWorkButtonDisabled()" *ngIf="table.stan_w_magazynie === 1 && table.etap_produkcji_id_etapu_produkcji !== 6" title="pobierz z magazynu do obróbki">
        <i class="material-icons">work</i>
       </button>
     </td>
-    <td *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+    <td *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
-               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5">
       <button type="button" (click)="UpdatewarehouseTakingAdd(table)" class="btn btn-raised btn-sm float-left"  aria-label="Profile" *ngIf="table.stan_w_magazynie === 0 && table.etap_produkcji_id_etapu_produkcji !== 6" title="wstaw do magazynu">
         <i class="material-icons">done</i>
@@ -99,13 +102,18 @@
 </table>
 
 <div class="card user-card d-block d-lg-none" *ngFor="let table of warehouse">
-  <div *ngIf="currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
+  <div *ngIf="currentUser.Stanowisko === 'Operator piły panelowej' && table.etap_produkcji_id_etapu_produkcji === 0 && table.nazwa_maszyny === 'Brak' ||
                currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
                currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
-               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
                currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5">
-  <p><b>Id. </b>{{table.produkcja_stolu_id_produkcji}}<b> id_zamowienia:</b> {{table.Zamowienie_id_zamowienie}} <b>etap_produkcji:</b> {{table.etap_produkcji_id_etapu_produkcji}} <b> data wprowadzenia: </b> {{table.data_godzina_wprowadzenia | date: 'dd-MM-yyyy HH:mm:ss'}}</p>
+  <p><b>Id. </b>{{table.produkcja_stolu_id_produkcji}}<b> id_zamowienia:</b> {{table.zamowienie_id_zamowienie}} <b>etap_produkcji:</b> {{table.etap_produkcji_id_etapu_produkcji}} <b> data wprowadzenia: </b> {{table.data_godzina_wprowadzenia | date: 'dd-MM-yyyy HH:mm:ss'}}</p>
+    <p *ngIf="currentUser.Stanowisko === 'Operator CNC' && table.etap_produkcji_id_etapu_produkcji === 1 ||
+               currentUser.Stanowisko === 'Stolarz' && table.etap_produkcji_id_etapu_produkcji === 2 && table.nazwa_maszyny === 'CNC' ||
+               currentUser.Stanowisko === 'Lakiernik' && table.etap_produkcji_id_etapu_produkcji === 3 && table.nazwa_maszyny === 'Heblarka' ||
+               currentUser.Stanowisko === 'Operator Okleiniarki' && table.etap_produkcji_id_etapu_produkcji === 4 && table.nazwa_maszyny === 'Foliowanie/lakierowanie' ||
+               currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 5"><b>pracownik wykonujący poprzedni etap: </b> {{table.Imie + ' ' + table.Nazwisko}}</p>
   <span> <button type="button" (click)="showTechnologicalProcess(table)" class="btn btn-raised btn-sm float-left"  data-toggle="modal" data-target="#myModal" aria-label="Profile" *ngIf="table.etap_produkcji_id_etapu_produkcji !== 6" title="proces technologiczny">
         <i class="material-icons">info</i>
          </button>
@@ -115,7 +123,7 @@
         <button type="button" (click)="UpdatewarehouseTakingAdd(table)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile" *ngIf="table.stan_w_magazynie === 0 && table.etap_produkcji_id_etapu_produkcji !== 6">
           <i class="material-icons">done</i>
         </button>
-        <button type="button" (click)="AddproductionResults(table)" class="btn btn-raised btn-sm float-left"  aria-label="Profile"  title="wstaw do magazynu">
+        <button type="button" (click)="AddproductionResults(table)" class="btn btn-raised btn-sm float-left"  aria-label="Profile"  *ngIf="currentUser.Stanowisko === 'Montaż/Pakownia' && table.etap_produkcji_id_etapu_produkcji === 6" title="wstaw do magazynu">
           <i class="material-icons">delete</i>
        </button>
   </span>
@@ -124,15 +132,14 @@
 <!--MODAL-->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog modal-lg">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Opis dla pracownika</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p><b>Opis: </b> {{tableModel.proces_technologiczny}}</p>
+        <p><b></b> {{tableModel.filename}}</p>
+        <img src="../../assets/uploads/{{tableModel.filename}}"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>

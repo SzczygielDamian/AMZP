@@ -8,7 +8,7 @@
   <div class="users-table card flex-item" *ngIf="user.Stanowisko === 'Administracja' || user.Stanowisko === 'Admin'">
     <a class="nav-link" routerLink="/production-stage" routerLinkActive="active">Etap produkcji</a>
   </div>
-  <div class="users-table card flex-item" *ngIf="user.Stanowisko === 'Operator CNC' || user.Stanowisko === 'Stolarz' || user.Stanowisko === 'Lakiernik' || user.Stanowisko === 'Montaż/Pakownia'">
+  <div class="users-table card flex-item" *ngIf="user.Stanowisko === 'Operator CNC' || user.Stanowisko === 'Stolarz' || user.Stanowisko === 'Lakiernik' || user.Stanowisko === 'Montaż/Pakownia' || user.Stanowisko === 'Operator piły panelowej' || user.Stanowisko === 'Operator Okleiniarki'">
     <a class="nav-link"  routerLink="/warehouse" routerLinkActive="active">Magazyn</a>
   </div>
   <div class="users-table card flex-item" *ngIf="user.Stanowisko === 'Kierownik' || user.Stanowisko === 	'Zaopatrzeniowiec' || user.Stanowisko === 'Admin'">

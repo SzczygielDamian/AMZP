@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { FileSelectDirective} from 'ng2-file-upload';
+
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {Injectable} from '@angular/core';
 
@@ -10,7 +12,7 @@ import { AuthGuard } from './guard';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './users/users.component';
-import { MainService } from "./main.service";
+import { MainService } from './main.service';
 import { WorkplaceComponent } from './workplace/workplace.component';
 import { ProvidersComponent } from './provider/providers/providers.component';
 import { ErrandComponent } from './order/errand/errand.component';
@@ -22,20 +24,22 @@ import { WarehouseComponent } from './warehouse/warehouse.component';
 import { OrderMonitoringComponent } from './order-monitoring/order-monitoring.component';
 import { InformationComponent } from './information/information.component';
 import { ProductionResultsComponent } from './production-results/production-results.component';
+import { ProductsComponent } from './products/products.component';
 
-@Injectable()
-export class CustomLocationStrategy extends HashLocationStrategy {
-  prepareExternalUrl(internal: string): string {
-        const url = 'http://81.26.6.25/student02/' + '#' + internal;
-        return url;
-      }
-}
-export class Site {
-  location: string;
-  constructor() {
-        this.location = window.location.href
-  }
-}
+
+// @Injectable()
+// export class CustomLocationStrategy extends HashLocationStrategy {
+//   prepareExternalUrl(internal: string): string {
+//         const url = 'http://81.26.6.25/student02/' + '#' + internal;
+//         return url;
+//       }
+// }
+// export class Site {
+//   location: string;
+//   constructor() {
+//         this.location = window.location.href
+//   }
+// }
 
 
 const appRoutes: Routes = [
@@ -52,6 +56,7 @@ const appRoutes: Routes = [
   { path: 'order-monitoring', component: OrderMonitoringComponent, canActivate: [AuthGuard]},
   { path: 'information', component: InformationComponent, canActivate: [AuthGuard]},
   { path: 'production-results', component: ProductionResultsComponent, canActivate: [AuthGuard]},
+  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
@@ -70,6 +75,8 @@ const appRoutes: Routes = [
     OrderMonitoringComponent,
     InformationComponent,
     ProductionResultsComponent,
+    ProductsComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -82,9 +89,10 @@ const appRoutes: Routes = [
 
   ],
   providers: [MainService,
-              AuthGuard,
-              { provide: APP_BASE_HREF, useValue: '/student02/' },
-              { provide: LocationStrategy, useClass: CustomLocationStrategy },],
+              AuthGuard
+              // { provide: APP_BASE_HREF, useValue: '/student02/' },
+              // { provide: LocationStrategy, useClass: CustomLocationStrategy },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

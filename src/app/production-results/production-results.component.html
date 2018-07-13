@@ -15,9 +15,9 @@
   <tbody>
   <tr *ngFor="let prodResults of productionResults; let i = index">
     <th scope="row">{{i+1}}</th>
-    <td>{{prodResults.Zamowienie_id_zamowienie}}</td>
-    <td>{{prodResults.nazwa_zamowienia}}</td>
+    <td>{{prodResults.zamowienie_id_zamowienie}}</td>
     <td>{{prodResults.nazwa_produktu}}</td>
+    <td>{{prodResults.nazwa_modelu}}</td>
     <td>{{prodResults.data_wyprodukowania |date: 'dd-MM-yyyy' }}</td>
     <td> </td>
     <td></td>
@@ -39,10 +39,13 @@
   <h3>Statystyki:</h3>
   <div class="card">
     <div class="row">
-      <div class="col-md-12 col-sm-12"> <div id="theResultOfTheProductionOfTablesChart"></div></div>
+      <div class="col-md-6 col-sm-12"> <div id="theResultOfTheProductionOfTablesChart"></div></div>
     </div>
     <div class="row">
-      <div class="col-md-12 col-sm-12"> <div id="theResultOfTheProductionOfTablesInMayChart"></div></div>
+      <div class="col-md-6 col-sm-12"> <div id="theResultOfTheProductionOfModelTablesChart"></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12"> <div id="theResultOfTheProductionOfModelTableChart"></div></div>
     </div>
   </div>
 </div>
@@ -52,8 +55,8 @@
   <table style="font-size: 8px; width: 100%">
     <thead>
     <tr>
-      <th>Modeł</th>
-      <th>Liczba sztuk</th>
+      <th>Produkt</th>
+      <th>Model</th>
       <th>Data zamowienia</th>
       <th>Data realizacji</th>
       <th>Data wyprodukowania</th>
@@ -62,7 +65,7 @@
     <tbody>
     <tr *ngFor="let prodResult of reportPDFResult">
       <td>{{prodResult.nazwa_produktu}}</td>
-      <td>{{prodResult.ilosc_zamowienia}}</td>
+      <td>{{prodResult.nazwa_modelu}}</td>
       <td>{{prodResult.data_zamowienia | date:'dd-MM-yyyy'}}</td>
       <td>{{prodResult.data_realizacji | date:'dd-MM-yyyy'}}</td>
       <td>{{prodResult.data_wyprodukowania | date:'dd-MM-yyyy'}}</td>

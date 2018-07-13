@@ -1,28 +1,36 @@
 <div class="users-table card">
   <h3>Dodaj nowe zamówienie:</h3>
   <div class="card">
-    <form class="user-form" (ngSubmit)="addOrder()" validate>
+    <form class="user-form" (ngSubmit)="upload()" validate>
       <div class="row">
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
-            <p>Wybierz model</p>
+            <p>Wybierz produkt:</p>
             <select class="custom-select" name="produkt" [(ngModel)]="model.produkt" required >
-              <option *ngFor="let prod of product" [ngValue]="prod.id_produktu">{{prod.nazwa_produktu}}</option>
+              <option *ngFor="let produ of products" [ngValue]="produ.id_produktu">{{produ.nazwa_produktu}}</option>
             </select>
           </div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12" *ngIf="model.produkt === 1">
           <div class="form-group">
-            <select class="custom-select" name="nazwa_zamowienia" [(ngModel)]="model.nazwa_zamowienia" required >
-              <option disabled hidden [ngValue]="model.nazwa_zamowienia">Wybierz produkt</option>
-              <option [ngValue]="'Stół'">Stół</option>
+            <p>Wybierz model:</p>
+            <select class="custom-select" name="model_produktu" [(ngModel)]="model.model_produktu" required >
+              <option *ngFor="let prod of productTable" [ngValue]="prod.id_modelu">{{prod.nazwa_modelu}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12" *ngIf="model.produkt === 2">
+          <div class="form-group">
+            <p>Wybierz model</p>
+            <select class="custom-select" name="model_produktu" [(ngModel)]="model.model_produktu" required >
+              <option *ngFor="let prod of productTab" [ngValue]="prod.id_modelu">{{prod.nazwa_modelu}}</option>
             </select>
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="ilosc_zamowienia">Ilość zamówienia</label>
-            <input type="number" class="form-control" id="ilosc_zamowienia" min="1" max="1" name="ilosc_zamowienia" [(ngModel)]="model.ilosc_zamowienia" #ilosc_zamowienia="ngModel" placeholder="Ilość zamówienia" required>
+            <input type="number" class="form-control" id="ilosc_zamowienia" min="1" name="ilosc_zamowienia" [(ngModel)]="model.ilosc_zamowienia" #ilosc_zamowienia="ngModel" placeholder="Ilość zamówienia" required>
           </div>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -33,8 +41,12 @@
         </div>
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
-            <label for="proces_technologiczny">proces technologiczny</label>
-            <textarea maxlength="255" rows="10" class="form-control" id="proces_technologiczny" name="proces_technologiczny" [(ngModel)]="model.proces_technologiczny" #proces_technologiczny="ngModel" placeholder="proces technologiczny dla pracownika" required></textarea>
+            <p>Dodaj zdjęcie procesu technologicznego</p>
+            <input #photo id="photo" type="file" />
+            <!-- button to trigger the file upload when submitted -->
+            <!--<button type="button" class="btn btn-success btn-s" (click)="upload()">-->
+              <!--Dodaj zdjęcie-->
+            <!--</button>-->
           </div>
         </div>
       </div>
@@ -50,7 +62,7 @@
   <tr>
     <th>#</th>
     <th>numer zamówienia</th>
-    <th>Nazwa zamówienia</th>
+    <th>Nazwa produktu</th>
     <th>Model</th>
     <th>Ilość sztuk</th>
     <th>Data zamówienia</th>
@@ -63,8 +75,8 @@
   <tr *ngFor="let order of viewOfOrder; let i = index">
     <th scope="row">{{i+1}}</th>
       <td>{{order.id_zamowienie}}</td>
-      <td>{{order.nazwa_zamowienia}}</td>
       <td>{{order.nazwa_produktu}}</td>
+      <td>{{order.nazwa_modelu}}</td>
       <td>{{order.ilosc_zamowienia}}</td>
       <td>{{order.data_zamowienia |date: 'dd-MM-yyyy' }}</td>
       <td>{{order.data_realizacji |date: 'dd-MM-yyyy' }}</td>
@@ -77,5 +89,4 @@
       <p><b>Id.</b> {{order.id_zamowienie}} <b>Nazwa zamówienia:</b> {{order.nazwa_zamowienia}} <b>Model:</b> {{order.nazwa_produktu}} <b>Data zamowienia:</b> {{order.data_zamowienia |date: 'dd-MM-yyyy' }} <b>Data realizacji:</b> {{order.data_realizacji |date: 'dd-MM-yyyy' }} <b>Opis:</b> {{order.opis_zamowienia}}</p>
     </div>
 </div>
-
 

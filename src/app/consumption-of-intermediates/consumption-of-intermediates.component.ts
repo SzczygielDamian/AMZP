@@ -7,7 +7,7 @@ import { MainService} from "../main.service";
   styleUrls: ['./consumption-of-intermediates.component.css']
 })
 export class ConsumptionOfIntermediatesComponent implements OnInit {
-  product = [];
+  productsModel = [];
   halfProducts = [];
   consumptionOfIntermediates = [];
   newProductConsumptionAlert =  '';
@@ -16,7 +16,7 @@ export class ConsumptionOfIntermediatesComponent implements OnInit {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(private mainService: MainService) {
-  this.getproduct();
+  this.getProductsModel();
   this.gethalfProducts();
   this.getconsumptionOfIntermediates();
   }
@@ -24,9 +24,9 @@ export class ConsumptionOfIntermediatesComponent implements OnInit {
   ngOnInit() {
   }
 
-  getproduct() {
-    this.mainService.getproduct()
-      .then(response => this.product = response.product)
+  getProductsModel() {
+    this.mainService.getProductsModel()
+      .then(response => this.productsModel = response.productsModel)
       .catch(error => console.log(error));
   }
   gethalfProducts() {
@@ -42,13 +42,13 @@ export class ConsumptionOfIntermediatesComponent implements OnInit {
   addNewProductConsumption() {
     this.mainService.addNewProductConsumption(
       this.model.polprodukty,
-      this.model.produkt,
+      this.model.model_produktu,
       this.model.Zuzycie
      )
       .then(response => {
         this.newProductConsumptionAlert = response.Message;
         this.model.polprodukty =  '';
-        this.model.produkt = '';
+        this.model.model_produktu = '';
         this.model.Zuzycie = '';
         this.getconsumptionOfIntermediates();
       })

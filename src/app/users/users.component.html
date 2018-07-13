@@ -67,16 +67,17 @@
     </thead>
     <tbody>
     <tr *ngFor="let user of users; let i = index">
-      <th scope="row">{{i+1}}</th>
-      <td>{{user.id_pracownika}}</td>
-      <td>{{user.Imie}}</td>
-      <td>{{user.Nazwisko}}</td>
-      <td>{{user.Stanowisko}}</td>
-      <td>{{user.email}}</td>
-      <td>
+      <th scope="row" *ngIf="user.Stanowisko !== 'Admin'">{{i+1}}</th>
+      <td *ngIf="user.Stanowisko !== 'Admin'">{{user.id_pracownika}}</td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">{{user.Imie}}</td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">{{user.Nazwisko}}</td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">{{user.Stanowisko}}</td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">{{user.email}}</td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">
         <button type="button" (click)="editUser(user)" class="btn btn-raised btn-sm float-left" data-toggle="modal" data-target="#exampleModal" aria-label="Profile">
           <i class="material-icons">build</i>
-        </button></td><td>
+        </button></td>
+      <td *ngIf="user.Stanowisko !== 'Admin'">
       <button type="button" (click)="deleteUser(user.id_pracownika)" class="btn btn-raised btn-sm float-lg-right" aria-label="Profile">
         <i class="material-icons">delete</i>
       </button>
@@ -85,8 +86,8 @@
     </tbody>
   </table>
     <div class="card user-card d-block d-lg-none" *ngFor="let user of users">
-    <p><b>Id.</b>{{user.id_pracownika}}. {{user.imie}} {{user.nazwisko}} <b>e-mail:</b> {{user.email}}</p>
-    <span><button type="button" (click)="editUser(user)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
+    <p *ngIf="user.Stanowisko !== 'Admin'"><b>Id.</b>{{user.id_pracownika}}. {{user.imie}} {{user.nazwisko}} <b>e-mail:</b> {{user.email}}</p>
+    <span *ngIf="user.Stanowisko !== 'Admin'"><button type="button" (click)="editUser(user)" class="btn btn-raised btn-sm float-left" aria-label="Profile">
       <i class="material-icons">build</i>
     </button>
     <button type="button" (click)="deleteUser(user.id_pracownik)" class="btn btn-raised btn-xs float-lg-left" aria-label="Profile">
@@ -138,7 +139,9 @@
                 <select class="custom-select" name="Stanowisko" [(ngModel)]="model.Stanowisko" required>
                   <option disabled hidden [ngValue]="model.Stanowisko">Wybierz stanowisko</option>
                   <option [ngValue]="'Operator CNC'">Operator CNC</option>
+                  <option [ngValue]="'Operator pilły panelowej'">Operator pilły panelowej</option>
                   <option [ngValue]="'Stolarz'">Stolarz</option>
+                  <option [ngValue]="'Operator Okleiniarki'">Operator Okleiniarki</option>
                   <option [ngValue]="'Lakiernik'">Lakiernik</option>
                   <option [ngValue]="'Montaż/Pakownia'">Montaż/Pakownia</option>
                   <option [ngValue]="'Zaopatrzeniowiec'">Zaopatrzeniowiec</option>

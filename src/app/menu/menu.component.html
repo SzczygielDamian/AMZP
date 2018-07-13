@@ -15,17 +15,20 @@
       <li class="nav-item" *ngIf="user.Stanowisko === 'Administracja' || user.Stanowisko === 'Admin'">
         <a class="nav-link" routerLink="/production-stage" routerLinkActive="active">Etap produkcji</a>
       </li>
-      <li class="nav-item" *ngIf="user.Stanowisko === 'Operator CNC' || user.Stanowisko === 'Stolarz' || user.Stanowisko === 'Lakiernik' || user.Stanowisko === 'Montaż/Pakownia'">
+      <li class="nav-item" *ngIf="user.Stanowisko === 'Administracja' || user.Stanowisko === 'Admin'">
+        <a class="nav-link" routerLink="/products" routerLinkActive="active">Produkty</a>
+      </li>
+      <li class="nav-item" *ngIf="user.Stanowisko === 'Operator CNC' || user.Stanowisko === 'Stolarz' || user.Stanowisko === 'Lakiernik' || user.Stanowisko === 'Montaż/Pakownia' || user.Stanowisko === 'Operator piły panelowej' || user.Stanowisko === 'Operator Okleiniarki'">
         <a class="nav-link " routerLink="/warehouse" routerLinkActive="active">Magazyn</a>
       </li>
       <li class="nav-item" *ngIf="user.Stanowisko === 'Kierownik' || user.Stanowisko === 	Zaopatrzeniowiec || user.Stanowisko === 'Admin'">
         <a class="nav-link" routerLink="/providers" routerLinkActive="active">Magazy Półprodukty</a>
       </li>
-      <li class="nav-item" *ngIf="user.Stanowisko === 'Obsługa' || user.Stanowisko === 'Admin'">
-        <a class="nav-link" routerLink="/errand" routerLinkActive="active">Zamówienie</a>
-      </li>
       <li class="nav-item" *ngIf="user.Stanowisko === 'Kierownik' || user.Stanowisko === 'Admin'">
         <a class="nav-link" routerLink="/consumption-of-intermediates" routerLinkActive="active">Zużycie póproduktu</a>
+      </li>
+      <li class="nav-item" *ngIf="user.Stanowisko === 'Obsługa' || user.Stanowisko === 'Admin'">
+        <a class="nav-link" routerLink="/errand" routerLinkActive="active">Zamówienie</a>
       </li>
       <li class="nav-item" *ngIf="user.Stanowisko === 'Administracja' || user.Stanowisko === 'Obsługa' || user.Stanowisko === 'Admin'">
         <a class="nav-link" routerLink="/order-monitoring" routerLinkActive="active">Status zamówienia</a>

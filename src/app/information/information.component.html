@@ -1,4 +1,4 @@
-<div class="information-table card d-none d-xl-block">
+<div class="information-table card d-none d-lg-block">
   <h6>Aplikacja Mobilna Monitorująca Zlecenia Produkcyjne</h6>
   <div *ngIf="this.router.url === '/users'" class="info">
     <h6>Strona na jakiej się znajdujesz: Pracownik</h6>
@@ -17,7 +17,7 @@
   </div>
   <div *ngIf="this.router.url === '/warehouse'" class="info">
     <h6>Strona na jakiej się znajdujesz: Magazyn</h6>
-    <p><span>Dostęp:</span> Admin, Lakiernik, Operator CNC, Stolarz, pracownik stanowiska montażu/pakowania</p>
+    <p><span>Dostęp:</span> Lakiernik, Operator CNC, Stolarz, pracownik stanowiska montażu/pakowania</p>
     <p><span>Opis:</span> Pracownik ma dostep do aktualnie znajdujacych sie w magazynie stołów, oznaczenia iż dany element został zabrany do dalszego etapu produkcji oraz dodania go ponownie do magazynu. </p>
   </div>
   <div *ngIf="this.router.url === '/providers'" class="info">
@@ -29,6 +29,33 @@
     <h6>Strona na jakiej się znajdujesz: Zamówienia</h6>
     <p><span>Dostęp:</span> Admin, Obsługa</p>
     <p><span>Opis:</span> Pracownicy dodaja do bazy danych zamówienia, które są następnie wyświetlana pracownikom produkcyjnym.</p>
+    <div class="order-table card d-none d-xl-block">
+      <h5 id="users-header">Przekazanie zamówienia do produkcji:</h5>
+      <table class="table table-striped flex-lg-column d-none d-lg-block">
+        <thead class="thead-inverse">
+        <tr>
+          <th>#</th>
+          <th>numer zamówienia</th>
+          <th>Liczba sztuk</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let Transfer of transferOfTheOrder; let i = index">
+          <th scope="row" *ngIf="Transfer.ilosc !== 0">{{i+1}}</th>
+          <td *ngIf="Transfer.ilosc !== 0">{{Transfer.zamowienie_id_zamowienie}}</td>
+          <td *ngIf="Transfer.ilosc !== 0">{{Transfer.ilosc}}</td>
+          <td *ngIf="Transfer.ilosc !== 0"><button type="button" (click)="AddTransferOfTheOrder(Transfer)" class="btn btn-raised btn-sm float-left" aria-label="Profile" title="przekaż na produkcję">
+            <i class="material-icons">add</i></button></td>
+          <td *ngIf="Transfer.ilosc !== 0"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="card user-card d-block d-lg-none" *ngFor="let Transfer of transferOfTheOrder">
+        <p><b>Id.</b> {{Transfer.zamowienie_id_zamowienie}} <b>Liczba sztuk:</b> {{Transfer.ilosc}}</p>
+      </div>
+    </div>
   </div>
   <div *ngIf="this.router.url === '/consumption-of-intermediates'" class="info">
     <h6>Strona na jakiej się znajdujesz: Zużycie półproduktów na produkt</h6>
@@ -45,5 +72,17 @@
     <p><span>Dostęp:</span> Admin, Administracja, Obsługa</p>
     <p><span>Opis:</span> Pracownikom wyświetlają się wyniki produkcji.</p>
   </div>
+  <div *ngIf="this.router.url === '/products'" class="info">
+    <h6>Strona na jakiej się znajdujesz: Produkty</h6>
+    <p><span>Dostęp:</span> Admin, Administracja, Obsługa</p>
+    <p><span>Opis:</span> Pracownicy mają możliwosć dodawania nowych produktów oraz modeli produktów które są produkowane w zakładzie. Dodatkowo są wyświetlane informacje o dostępnych aktulanie produktach i modelach produkowanych przez zakłąd stolarski.</p>
+  </div>
 </div>
-
+<div class="card user-card d-block d-lg-none">
+  <p class="in">przekazanie zamówienia do produkcji</p>
+<div class="card user-card d-block d-lg-none" *ngFor="let Transfer of transferOfTheOrder">
+  <p *ngIf="Transfer.ilosc !== 0"><b>Id.</b> {{Transfer.zamowienie_id_zamowienie}} <b>Liczba sztuk:</b> {{Transfer.ilosc}}</p>
+  <span *ngIf="Transfer.ilosc !== 0"><button type="button" (click)="AddTransferOfTheOrder(Transfer)" class="btn btn-raised btn-sm" aria-label="Profile" title="przekaż na produkcję">
+    <i class="material-icons">add</i></button></span>
+</div>
+</div>
