@@ -14,7 +14,6 @@ export class WarehouseComponent implements OnInit {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   tableModel: any = [];
   isAnyStateZero = false;
-  // dupa = 'C:/magisterka/AMZP/uploads/FRONTEND.png';
   constructor(private mainService: MainService) { }
 
   ngOnInit() {

@@ -3,4 +3,7 @@
     position: absolute;
     right: 20px;
   }
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+  }
 }

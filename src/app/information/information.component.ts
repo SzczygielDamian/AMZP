@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from "../main.service";
+import { MainService } from '../main.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./information.component.css']
 })
 export class InformationComponent implements OnInit {
-  public href: string = "";
+  public href = '';
   transferOfTheOrder = [];
   model: any = [];
   newTransferOfTheOrderAlert = '';
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   mobWidth: any;
-  constructor(private router: Router, private mainService: MainService) {
+  constructor(public router: Router, private mainService: MainService) {
     this.getTransferOfTheOrder();
     this.mobWidth = (window.screen.width);
   }
@@ -30,9 +30,9 @@ export class InformationComponent implements OnInit {
       .catch(error => console.log(error));
   }
   AddTransferOfTheOrder(record) {
-    let dateFormat = require('dateformat');
+    const dateFormat = require('dateformat');
     const data_godzina_wprowadzenia = new Date ();
-    let datwpr = dateFormat(data_godzina_wprowadzenia, 'yyyy-mm-dd HH:MM:ss');
+    const datwpr = dateFormat(data_godzina_wprowadzenia, 'yyyy-mm-dd HH:MM:ss');
     this.mainService.AddTransferOfTheOrder(
       record.id_przekazania_zamowienia,
      0,
