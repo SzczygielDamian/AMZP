@@ -1,0 +1,119 @@
+<div class="users-table card">
+  <h3 id="users-header">Produkty wytwarzane przez zakład:</h3>
+  <div class="card">
+    <!--<div class="butt"> <button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn-raised btn-primary">Dodaj nowy produkt</button></div>-->
+    <table class="table table-striped flex-lg-column d-none d-lg-block">
+      <thead class="thead-inverse">
+         <tr>
+           <th>#</th>
+           <th>Nazwa produktu</th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
+    <tbody>
+    <tr *ngFor="let prod of products; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{prod.nazwa_produktu}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="card user-card d-block d-lg-none" *ngFor="let prod of products">
+      <p><b>Nazwa produktu</b> {{prod.nazwa_produktu}}</p>
+    </div>
+</div>
+  <div class="users-table card">
+    <h3 id="users-heade">Modele produktów wytwarzanych przez zakład:</h3>
+    <div class="card">
+    <div class="butt"> <button type="submit" data-toggle="modal" data-target="#exampleModal2" class="btn-raised btn-primary">Dodaj model produktu</button></div>
+    <table class="table table-striped flex-lg-column d-none d-lg-block">
+      <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Nazwa produktu</th>
+        <th>nazwa modelu</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prodModel of productsModel; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{prodModel.nazwa_produktu}}</td>
+        <td>{{prodModel.nazwa_modelu}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="card user-card d-block d-lg-none" *ngFor="let prodModel of productsModel">
+      <p> <b>Nazwa produktu</b> {{prodModel.nazwa_produktu}} <b>Nazwa modelu</b> {{prodModel.nazwa_modelu}}</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Dokonaj nowy produkt</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="AddProduct()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="nazwa_produktu">Nazwa produktu</label>
+                <input type="text" class="form-control" id="nazwa_produktu" name="nazwa_produktu" [(ngModel)]="model.nazwa_produktu" #nazwa_produktu="ngModel" placeholder="nazwa produktu" required>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="newProductAlert" class="alert alert-success">{{newProductAlert}}</div>
+          <button type="submit"  (click)="onClick()" class="btn btn-primary">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Dokonaj nowy produkt</h5>
+        <button type="button" (click)="onClick()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="user-form" (ngSubmit)="AddProductsModel()" validate>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <p>model stołu</p>
+                <select class="custom-select" name="produkt" [(ngModel)]="model.produkt" required >
+                  <option *ngFor="let prod of products" [ngValue]="prod.id_produktu">{{prod.nazwa_produktu}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="nazwa_modelu">Nazwa modelu</label>
+                <input type="text" class="form-control" id="nazwa_modelu" name="nazwa_modelu" [(ngModel)]="model.nazwa_modelu" #nazwa_modelu="ngModel" placeholder="nazwa modelu" required>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="newProductModelAlert" class="alert alert-success">{{newProductModelAlert}}</div>
+          <button type="submit"  (click)="onClick()" class="btn btn-primary">Zapisz</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -91,8 +91,7 @@ const appRoutes: Routes = [
   providers: [MainService,
               AuthGuard,
               { provide: APP_BASE_HREF, useValue: '/student02/' },
-              { provide: LocationStrategy, useClass: CustomLocationStrategy },
-  ],
+              { provide: LocationStrategy, useClass: CustomLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
